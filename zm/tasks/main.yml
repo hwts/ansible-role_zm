@@ -1,0 +1,28 @@
+---
+- name: Add Zoneminder PPA
+  apt_repository:
+    repo: "ppa:iconnor/zoneminder-1.36"
+
+- name: Install Zoneminder
+  apt:
+    update_cache: yes
+    state: present
+    name: "zoneminder={{ zm_version | default('1.36.33-jammy1', true) }}"
+
+- name: Enable Apache modules
+  apache2_module:
+    state: present
+    name:
+      - rewrite
+
+- name: Enable Zoneminder Apache configuration
+  apache2_conf:
+    state: present
+    name: zoneminder
+
+- name: Start Zoneminder service
+  systemd:
+    name: zoneminder
+    state: started
+    enabled: yes
+
