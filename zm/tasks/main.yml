@@ -15,14 +15,15 @@
     name:
       - rewrite
 
-- name: Create symbolic link to moved Zoneminder cache
+- name: Create symbolic link apache 
   file:
     src: /etc/apache2/conf-avalible/zoneminder.conf
     dest: /etc/apache2/conf-enabled/zoneminder.conf 
     state: link
+  notify: restart apache
 
 - name: Start Zoneminder service
-  systemd:
+  service:
     name: zoneminder
     state: started
     enabled: yes
