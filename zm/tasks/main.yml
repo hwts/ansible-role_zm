@@ -15,10 +15,11 @@
     name:
       - rewrite
 
-- name: Enable Zoneminder Apache configuration
-  apache2_conf:
-    state: present
-    name: zoneminder
+- name: Create symbolic link to moved Zoneminder cache
+  file:
+    src: /etc/apache2/conf-avalible/zoneminder.conf
+    dest: /etc/apache2/conf-enabled/zoneminder.conf 
+    state: link
 
 - name: Start Zoneminder service
   systemd:
