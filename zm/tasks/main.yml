@@ -12,8 +12,7 @@
 - name: Enable Apache modules
   apache2_module:
     state: present
-    name:
-      - rewrite
+    name: rewrite
 
 - name: Create symbolic link apache 
   file:
