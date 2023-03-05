@@ -16,7 +16,7 @@
 
 - name: Create symbolic link apache 
   file:
-    src: /etc/apache2/conf-avalible/zoneminder.conf
+    src: /etc/apache2/conf-available/zoneminder.conf
     dest: /etc/apache2/conf-enabled/zoneminder.conf 
     state: link
   notify: restart apache
